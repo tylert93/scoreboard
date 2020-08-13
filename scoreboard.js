@@ -1,21 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
     //set number of default players
-    var numPlayers = 1;    
+    let numPlayers = 1;    
     //generate player entry feilds
     makePlayers();
     //allow user to add more players - maximum of 10
-    $("#more").on("click", function(){
+    $("#more").on("click", () => {
         if(numPlayers < 10){
             numPlayers += 1;
-            $("#player-setUp").append("<div class='player-entry'><label for='player-" + numPlayers + "-name'>Player " + numPlayers + "</label><input name='player-" + numPlayers + "-name' id='player-" + numPlayers + "-name' class='names' type='text' placeholder='enter name'></div>");
+            $("#player-setUp").append(`<div class='player-entry'><label for='player- ${numPlayers} -name'>Player ${numPlayers} </label><input name='player-${numPlayers} -name' id='player-" ${numPlayers} -name' class='names' type='text' placeholder='enter name'></div>`);
         }
     })
     //allow user to increase each players score
     $("#scoreboard").on("click", ".add", function(){
-        var score = $(this).parent().parent().find(".score");
-        var currentNum = Number($(score).text());
-        var addNum = Number($(this).parent().parent().find("input").val());
-        var newNum = currentNum + addNum;
+        let score = $(this).parent().parent().find(".score"),
+            currentNum = Number($(score).text()),
+            addNum = Number($(this).parent().parent().find("input").val()),
+            newNum = currentNum + addNum;
         //make upper limit of all scores 999
         if(newNum >= 999){
             newNum = 999;
@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     //allow user to decrease each players score
     $("#scoreboard").on("click", ".subtract", function(){
-        var score = $(this).parent().parent().find(".score");
-        var currentNum = Number($(score).text());
-        var addNum = Number($(this).parent().parent().find("input").val());
-        var newNum = currentNum - addNum
+        let score = $(this).parent().parent().find(".score");
+            currentNum = Number($(score).text());
+            addNum = Number($(this).parent().parent().find("input").val());
+            newNum = currentNum - addNum
         //make lowewr limit of all scores 0
         if(newNum <= 0){
             newNum = 0;
@@ -48,8 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if($(this).val() === ""){
                 return
             } else {
-                var playerName = $(this).val();
-                var board = document.createElement("div");
+                let playerName = $(this).val(),
+                    board = document.createElement("div");
+
                 $(board).addClass("board");
                 $(board).append("<h3 class='player-name green'>" + playerName + "</h3>");
                 $(board).append("<div class='score orange'>0</div class='score'>");
@@ -84,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //define elements for each player entry
     function makePlayers(){
         for(i = 1; i <= numPlayers; i++){
-            $("#player-setUp").append("<div class='player-entry'><label for='player-" + i + "-name'>Player " + i + "</label><input name='player-" + i + "-name' id='player-" + i + "-name' class='names' type='text' placeholder='enter name'></div>")
+            $("#player-setUp").append(`<div class='player-entry'><label for='player- ${i} -name'>Player ${i} </label><input name='player- ${i} -name' id='player- ${i} -name' class='names' type='text' placeholder='enter name'></div>`)
         }
     }
 })
